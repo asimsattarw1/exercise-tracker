@@ -25,6 +25,27 @@ const addActivity = async (req, res) => {
     }
 }
 
+const updateActivity = async (req, res) => {
+    const { id, name, activity, description, duration, date } = req.body;
+
+    try {
+        const result = await activityModel.findByIdAndUpdate({ _id: id }, {
+            $set: {
+                name: name,
+                activity: activity,
+                description: description,
+                duration: duration,
+                date: date
+            }
+        });
+        await result.save();
+
+        res.status(201).json(responseModel({ status: true, data: result, message: "Data updated successfully" }));
+    } catch (error) {
+        res.status(500).json(responseModel({ message: 'something went wrong' }));
+    }
+}
+
 const getActivity = async (req, res) => {
     try {
         const result = await activityModel.find();
@@ -44,4 +65,4 @@ const deleteActivity = async (req, res) => {
     }
 }
 
-module.exports = { addActivity, getActivity, deleteActivity }
+module.exports = { addActivity, updateActivity, getActivity, deleteActivity }

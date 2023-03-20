@@ -22,5 +22,6 @@ conn.on('error', function () {
 router.post('/add', ActivityController.addActivity);
 router.get('/get', ActivityController.getActivity);
 router.post('/delete', ActivityController.deleteActivity);
+router.post('/update', ActivityController.updateActivity);
 
 module.exports = router;
