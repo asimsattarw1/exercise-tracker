@@ -5,14 +5,11 @@ var cookieParser = require('cookie-parser');
 // var logger = require('morgan');
 // const auth = require('./auth');
 const cors = require('cors');
-// const postsRouter = require('./routes/posts');
 const userRouter = require('./routes/userRoutes');
 const activityRouter = require('./routes/activityRoutes');
 
 var app = express();
 app.use(cors());
-
-var indexRouter = require('./routes/index');
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -26,7 +23,6 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 // app.use('/auth', auth);
 
-app.use('/', indexRouter);
 app.use('/user', userRouter);
 app.use('/activity', activityRouter);
 
